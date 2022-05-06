@@ -12,14 +12,11 @@ public class main {
             String myUrl = "jdbc:mysql://localhost/COMPANY_MODEL";
             String userName = "root";
             String password = "";
-            try {
-                Connection conn = DriverManager.getConnection(myUrl, userName, password);
-            } catch (SQLException ex) {
-                Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            Connection conn = DriverManager.getConnection(myUrl, userName, password);
             
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception e) {
+            System.err.println("Got an exception! ");
+            System.err.println(e.getMessage());
         }
 
         
