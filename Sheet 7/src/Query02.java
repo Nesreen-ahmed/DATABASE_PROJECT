@@ -12,15 +12,15 @@ public class Query02 {
             String password = "";
             Connection conn = DriverManager.getConnection(myUrl, userName, password);
             ResultSet rs2 = conn.createStatement().executeQuery("SELECT * FROM department");
+                ResultSet rs1 = conn.createStatement().executeQuery("SELECT * FROM employee");
             while (rs2.next()) {
                 System.out.println("*************************" + rs2.getString("Dname")+"*************************");
-                ResultSet rs1 = conn.createStatement().executeQuery("SELECT * FROM employee");
-                
+                rs1.beforeFirst();
                 while (rs1.next()) {
                     if (rs2.getInt("Dnumer") != rs1.getInt("Dno")) {
                     continue;
                 }
-                    System.out.println("" + rs1.getString("Fname")+"  "+rs1.getString("Dno"));
+                    System.out.println("" + rs1.getString("Fname")+"  "+rs2.getString("Dname"));
                 }
             }
         } catch (Exception e) {
