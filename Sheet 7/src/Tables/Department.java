@@ -6,8 +6,8 @@
 package Tables;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
-import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -53,11 +53,11 @@ public class Department implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date mgrstartdate;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "department")
-    private Set<DeptLocations> deptLocationsSet;
+    private Collection<DeptLocations> deptLocationsCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "dnum")
-    private Set<Project> projectSet;
+    private Collection<Project> projectCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "dno")
-    private Set<Employee> employeeSet;
+    private Collection<Employee> employeeCollection;
 
     public Department() {
     }
@@ -106,30 +106,30 @@ public class Department implements Serializable {
     }
 
     @XmlTransient
-    public Set<DeptLocations> getDeptLocationsSet() {
-        return deptLocationsSet;
+    public Collection<DeptLocations> getDeptLocationsCollection() {
+        return deptLocationsCollection;
     }
 
-    public void setDeptLocationsSet(Set<DeptLocations> deptLocationsSet) {
-        this.deptLocationsSet = deptLocationsSet;
-    }
-
-    @XmlTransient
-    public Set<Project> getProjectSet() {
-        return projectSet;
-    }
-
-    public void setProjectSet(Set<Project> projectSet) {
-        this.projectSet = projectSet;
+    public void setDeptLocationsCollection(Collection<DeptLocations> deptLocationsCollection) {
+        this.deptLocationsCollection = deptLocationsCollection;
     }
 
     @XmlTransient
-    public Set<Employee> getEmployeeSet() {
-        return employeeSet;
+    public Collection<Project> getProjectCollection() {
+        return projectCollection;
     }
 
-    public void setEmployeeSet(Set<Employee> employeeSet) {
-        this.employeeSet = employeeSet;
+    public void setProjectCollection(Collection<Project> projectCollection) {
+        this.projectCollection = projectCollection;
+    }
+
+    @XmlTransient
+    public Collection<Employee> getEmployeeCollection() {
+        return employeeCollection;
+    }
+
+    public void setEmployeeCollection(Collection<Employee> employeeCollection) {
+        this.employeeCollection = employeeCollection;
     }
 
     @Override

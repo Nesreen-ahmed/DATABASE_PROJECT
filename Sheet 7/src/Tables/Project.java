@@ -6,7 +6,7 @@
 package Tables;
 
 import java.io.Serializable;
-import java.util.Set;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -48,7 +48,7 @@ public class Project implements Serializable {
     @ManyToOne(optional = false)
     private Department dnum;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "project")
-    private Set<WorksOn> worksOnSet;
+    private Collection<WorksOn> worksOnCollection;
 
     public Project() {
     }
@@ -90,12 +90,12 @@ public class Project implements Serializable {
     }
 
     @XmlTransient
-    public Set<WorksOn> getWorksOnSet() {
-        return worksOnSet;
+    public Collection<WorksOn> getWorksOnCollection() {
+        return worksOnCollection;
     }
 
-    public void setWorksOnSet(Set<WorksOn> worksOnSet) {
-        this.worksOnSet = worksOnSet;
+    public void setWorksOnCollection(Collection<WorksOn> worksOnCollection) {
+        this.worksOnCollection = worksOnCollection;
     }
 
     @Override

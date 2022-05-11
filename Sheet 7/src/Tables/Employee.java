@@ -7,8 +7,8 @@ package Tables;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Collection;
 import java.util.Date;
-import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -74,9 +74,9 @@ public class Employee implements Serializable {
     @ManyToOne(optional = false)
     private Department dno;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "employee")
-    private Set<Dependent> dependentSet;
+    private Collection<Dependent> dependentCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "employee")
-    private Set<WorksOn> worksOnSet;
+    private Collection<WorksOn> worksOnCollection;
 
     public Employee() {
     }
@@ -172,21 +172,21 @@ public class Employee implements Serializable {
     }
 
     @XmlTransient
-    public Set<Dependent> getDependentSet() {
-        return dependentSet;
+    public Collection<Dependent> getDependentCollection() {
+        return dependentCollection;
     }
 
-    public void setDependentSet(Set<Dependent> dependentSet) {
-        this.dependentSet = dependentSet;
+    public void setDependentCollection(Collection<Dependent> dependentCollection) {
+        this.dependentCollection = dependentCollection;
     }
 
     @XmlTransient
-    public Set<WorksOn> getWorksOnSet() {
-        return worksOnSet;
+    public Collection<WorksOn> getWorksOnCollection() {
+        return worksOnCollection;
     }
 
-    public void setWorksOnSet(Set<WorksOn> worksOnSet) {
-        this.worksOnSet = worksOnSet;
+    public void setWorksOnCollection(Collection<WorksOn> worksOnCollection) {
+        this.worksOnCollection = worksOnCollection;
     }
 
     @Override
