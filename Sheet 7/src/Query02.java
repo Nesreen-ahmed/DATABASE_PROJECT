@@ -10,6 +10,7 @@ public class Query02 {
         List<Employee> emp=em.createNamedQuery("Employee.findAll").getResultList();
         for(Employee e:emp)
         {
+            if(e.getSuperssn()==null)
             System.out.println(e.getFname()+" "+e.getSalary());
         }
     }
