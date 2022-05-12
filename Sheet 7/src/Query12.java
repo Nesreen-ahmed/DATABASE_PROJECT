@@ -17,10 +17,12 @@ public class Query12 {
         double avg;
         for(Employee e : allEmp)
         {
-            if(e.getDno().equals(dp.getDnumer()))
+            
+            if(e.getDno().getDnumer().equals(dp.getDnumer()))
             {
                 count++;
                 sum+=e.getSalary().doubleValue();
+
             }
         }
         avg =  sum/count;
