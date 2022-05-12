@@ -11,7 +11,7 @@ public class Query06 {
         EntityManager em=Persistence.createEntityManagerFactory("Sheet_7PU").createEntityManager();
         em.getTransaction().begin();
         //System.out.println("Names of all employees");
-        Project proj=(Project) em.createNamedQuery("Project_1.findByPname").setParameter("pname", "Computerization").getSingleResult();
+        Project proj=(Project) em.createNamedQuery("Project.findByPname").setParameter("pname", "Computerization").getSingleResult();
         List<WorksOn> worker=em.createNamedQuery("WorksOn.findByPno").setParameter("pno",proj.getPnumber()).getResultList();
         for(WorksOn w : worker)
         {

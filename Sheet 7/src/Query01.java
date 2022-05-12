@@ -12,7 +12,7 @@ public class Query01
 {
     public static void main(String[] args) 
     {
-        EntityManager em = Persistence.createEntityManagerFactory("Sheet_7PU").createEntityManager();
+        EntityManager em=Persistence.createEntityManagerFactory("Sheet_7PU").createEntityManager();
         em.getTransaction().begin();
         System.out.println("Names of all employees");
         List<Employee> allEmp= em.createNamedQuery("Employee.findAll").getResultList();
