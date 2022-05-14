@@ -13,6 +13,6 @@ public class Query02 {
             if(e.getSuperssn()==null)
             System.out.println(e.getFname()+" "+e.getSalary());
         }
-    }
+    } 
     
 }
