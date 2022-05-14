@@ -9,7 +9,12 @@ public class Query11 {
 
     public static void main(String[] args) {
         EntityManager em=Persistence.createEntityManagerFactory("Sheet_7PU").createEntityManager();
+        em.getTransaction().begin();
         List<Department> dept=em.createNamedQuery("Department.findAll").getResultList();
+        
+        System.out.println("\n11.Retrieve each department name and the average of their employees' salaries.\n");
+        System.out.format("%25s,%16s\n","--------------------","--------------------");
+        System.out.format("%22s,%20s\n","Name of deparment","Average Salary");
         for(Department d:dept)
         {
             double tsalary=0;
@@ -22,8 +27,10 @@ public class Query11 {
                     tsalary+=e.getSalary().doubleValue();
                 }
             }
-            System.out.println(d.getDname()+" "+(tsalary/n));
+            System.out.format("%25s,%16s\n","--------------------","--------------------");
+             System.out.format("%22s,%15s\n",d.getDname(),(tsalary/n));
         }
+         System.out.format("%25s,%16s\n","--------------------","--------------------\n\n");
     }
     
 }

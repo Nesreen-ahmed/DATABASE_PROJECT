@@ -9,16 +9,29 @@ public class Query08 {
 
     public static void main(String[] args) {
         EntityManager em=Persistence.createEntityManagerFactory("Sheet_7PU").createEntityManager();
+        em.getTransaction().begin();
+        
         List<Employee> emp=em.createNamedQuery("Employee.findAll").getResultList();
+        
+        System.out.println("8.Retrieve the names of all employees in department 5 who work more than 20 hours per week on the “ProductX” project.\n");
+        System.out.format("%25s,%18s,%20s\n","--------------------","--------------------","--------------------");
+        System.out.format("%22s,%20s,%15s\n","Name of employee","Project name","Hours");
         for(Employee e:emp)
         {
             if(e.getDno().getDnumer()==5)
             {
                 for(WorksOn w:e.getWorksOnCollection())
-                    if(w.getHours()>20&&w.getProject().getPname().equals("ProductX"))
-                        System.out.println(e.getFname()+" "+w.getHours()+" "+w.getProject().getPname());
+                {
+                    if( w.getHours().doubleValue()>20 && w.getProject().getPname().equals("ProductX"))
+                    {
+                        System.out.format("%25s,%18s,%20s\n","--------------------","--------------------","--------------------");
+                        System.out.format("%20s,%20s,%15s\n",e.getFname()+"."+e.getMinit()+"."+e.getLname(),w.getProject().getPname(),w.getHours());
+                        //System.out.println(e.getFname()+" "+w.getHours()+" "+w.getProject().getPname());
+                    }
+                }               
             }
         }
+        System.out.format("%25s,%18s,%20s\n","--------------------","--------------------","--------------------\n");
     }
     
 }
