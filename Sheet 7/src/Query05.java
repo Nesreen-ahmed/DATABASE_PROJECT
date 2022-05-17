@@ -9,7 +9,7 @@ import javax.persistence.Persistence;
 public class Query05 {
 
     public static void main(String[] args) {
-        EntityManager em=Persistence.createEntityManagerFactory("HproPU").createEntityManager();
+        EntityManager em=Persistence.createEntityManagerFactory("Sheet_7PU").createEntityManager();
         em.getTransaction().begin();
         List<Employee> allEmp= em.createNamedQuery("Employee.findAll").getResultList();
         List<Department> allDep=em.createNamedQuery("Department.findAll").getResultList();
@@ -29,7 +29,7 @@ public class Query05 {
         System.out.println("_______________|____________________|_____________________\n\n\n");
         
         //--------------------------After Update-------------------//
-        System.out.println("\t\t Salary Before Update");
+        System.out.println("\t\t Salary After Update");
         System.out.println("__________________________________________________________");
         System.out.format("%10s%3s%13s%8s%18s\n","Employee Name","|","Salary","|","Department");
         System.out.println("_______________|____________________|_____________________");
@@ -41,10 +41,12 @@ public class Query05 {
                 updatedSalalry+=(updatedSalalry*10)/100;
                 BigDecimal Bd= new BigDecimal(updatedSalalry); 
                 e.setSalary(Bd);
+                em.persist(e);
                 System.out.format("%10s%6s%13s%8s%18s\n",e.getFname(),"|",e.getSalary(),"|",e.getDno().getDname());
             }
         }
         System.out.println("_______________|____________________|_____________________");
+        em.getTransaction().commit();
+        em.close();
     }  
-    
 }

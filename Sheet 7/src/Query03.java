@@ -7,7 +7,7 @@ import javax.persistence.Persistence;
 public class Query03 {
 
     public static void main(String[] args) {
-        EntityManager em=Persistence.createEntityManagerFactory("HproPU").createEntityManager();
+        EntityManager em=Persistence.createEntityManagerFactory("Sheet_7PU").createEntityManager();
         em.getTransaction().begin();
         
         System.out.println("\n3.Retrieve the name of each employee and his department location\n\n");

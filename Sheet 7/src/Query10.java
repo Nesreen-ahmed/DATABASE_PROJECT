@@ -8,7 +8,7 @@ import javax.persistence.Persistence;
 public class Query10 {
 
     public static void main(String[] args) {
-        EntityManager em=Persistence.createEntityManagerFactory("HproPU").createEntityManager();
+        EntityManager em=Persistence.createEntityManagerFactory("Sheet_7PU").createEntityManager();
         em.getTransaction().begin();
         List<Employee> allEmp= em.createNamedQuery("Employee.findAll").getResultList();
         List<Department> allDep=em.createNamedQuery("Department.findAll").getResultList();
