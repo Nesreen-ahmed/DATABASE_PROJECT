@@ -15,18 +15,19 @@ public class Query04 {
         List<Department> allDep = em.createNamedQuery("Department.findAll").getResultList();
         List<Employee> Emps = em.createNamedQuery("Employee.findAll").getResultList();
     
-        System.out.println("\n4.List the count of employees for each department.\n\n\t--------------------\t--------------------");
-        System.out.println("\t Department Name "+"\t"+"Count of employees ");
+        System.out.println("\n4.List the count of employees for each department.\n");
+        System.out.println("\t________________________________________________________");
+        System.out.format("\t%5s%10s%25s\n","Department Name","|","Count of employees ");
+        System.out.println("\t________________________|_______________________________");
         for(Department d : allDep)
         {
             int count=0;
-            System.out.println("\t--------------------\t--------------------");
             for(Employee e : Emps)
             {
                 if(Objects.equals(e.getDno().getDnumer(), d.getDnumer()))
                     count++;
             }
-            System.out.println("\t "+d.getDname()+"\t\t\t"+count);
+            System.out.format("\t%15s%10s%15s\n",d.getDname(),"|",count);
         }
     }
     

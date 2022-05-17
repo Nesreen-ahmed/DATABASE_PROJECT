@@ -13,17 +13,18 @@ public class Query09 {
         
         List<Employee> Emps = em.createNamedQuery("Employee.findAll").getResultList();
         List<Dependent> Dep = em.createNamedQuery("Dependent.findAll").getResultList();
-        System.out.println("\n9.List the name of each employee and his/her spouse.\n\n\t--------------------\t----------------------");
-        System.out.println("\t  Employee Name \t\tSpouse Name");
-        
+        System.out.println("\n9.List the name of each employee and his/her spouse.\n");
+        System.out.println("\t____________________________________________");
+        System.out.format("\t%18s%5s%15s\n","Employee Name ","|","Spouse Name");
+        System.out.println("\t______________________|_____________________");
         for(Dependent d: Dep)
         {
             if(d.getRelationship().equalsIgnoreCase("Spouse"))
             {
-                System.out.println("\t--------------------\t----------------------");
-                System.out.println("\t  "+ d.getEmployee().getFname() +"\t\t\t"+d.getDependentPK().getDependentname());
+                System.out.format("\t%14s%9s%15s\n", d.getEmployee().getFname() ,"|",d.getDependentPK().getDependentname());
             }
         }
+        System.out.println("\t____________________________________________\n");
     }
     
 }

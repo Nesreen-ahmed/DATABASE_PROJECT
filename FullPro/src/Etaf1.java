@@ -1,5 +1,6 @@
 
 import Tables.Department;
+import Tables.Dependent;
 import Tables.Employee;
 import Tables.Project;
 import Tables.WorksOn;
@@ -27,22 +28,34 @@ public class Etaf1 {
         EntityManager em=Persistence.createEntityManagerFactory("FullProPU").createEntityManager();
         em.getTransaction().begin();
         
-       List<Department> allDep = em.createNamedQuery("Department.findAll").getResultList();
-        List<Employee> Emps = em.createNamedQuery("Employee.findAll").getResultList();
-    
-        System.out.println("\n4.List the count of employees for each department.\n\n\t--------------------\t--------------------");
-        System.out.println("\t Department Name "+"\t"+"Count of employees ");
-        for(Department d : allDep)
+        Department dp = (Department) em.createNamedQuery("Department.findByDname").setParameter("dname","Research").getSingleResult();
+        List<Employee> allEmp= em.createNamedQuery("Employee.findAll").getResultList();
+        
+        double sum=0;
+        int count =0;
+        double avg;
+        
+        System.out.println("\n12.Retrieve the details of each employee who takes salary greater than the average salaries of the research department's employees.\n");
+        System.out.println("\t_______________________________________________________________________________________________________________");
+        System.out.format("\t%20s%5s%10s%8s%20s%20s%15s\n","NameOfEmpolyee","|","Ssn","|","Adress","|","Salary");
+        System.out.println("\t________________________|_________________|_______________________________________|____________________________");
+        for(Employee e : allEmp)
         {
-            int count=0;
-            System.out.println("\t--------------------\t--------------------");
-            for(Employee e : Emps)
+            
+            if(e.getDno().getDno().equals(dp.getDno()))
             {
-                if(Objects.equals(e.getDno().getDno(), d.getDno()))
-                    count++;
+                count++;
+                sum+=e.getSalary().doubleValue();
             }
-            System.out.println("\t "+d.getDname()+"\t\t\t"+count);
         }
+        avg =  sum/count;
+        for(Employee e : allEmp)
+        {
+            if(e.getSalary().doubleValue()>avg)
+            {
+                System.out.format("\t%20s%5s%13s%5s%25s%15s%15s\n",e.getFname()+"."+e.getMinit()+"."+e.getLname(),"|",e.getSsn(),"|",e.getAddress(),"|",e.getSalary());
+            }
+        }
+         System.out.println("\t______________________________________________________________________________________________________________");
     }
-    
 }

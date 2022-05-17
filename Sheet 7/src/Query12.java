@@ -19,8 +19,9 @@ public class Query12 {
         double avg;
         
         System.out.println("\n12.Retrieve the details of each employee who takes salary greater than the average salaries of the research department's employees.\n");
-        System.out.format("%25s,%18s,%20s,%15s\n","----------------------------","--------------------","---------------------------","--------------------");
-        System.out.format("%20s,%18s,%25s,%22s\n","NameOfEmpolyee","Ssn","Adress","Salary");
+        System.out.println("\t_______________________________________________________________________________________________________________");
+        System.out.format("\t%20s%5s%10s%8s%20s%20s%15s\n","NameOfEmpolyee","|","Ssn","|","Adress","|","Salary");
+        System.out.println("\t________________________|_________________|_______________________________________|____________________________");
         for(Employee e : allEmp)
         {
             
@@ -35,10 +36,9 @@ public class Query12 {
         {
             if(e.getSalary().doubleValue()>avg)
             {
-                System.out.format("%25s,%18s,%20s,%15s\n","----------------------------","--------------------","---------------------------","--------------------");
-                System.out.format("%26s,%18s,%27s,%15s\n",e.getFname()+"."+e.getMinit()+"."+e.getLname(),e.getSsn(),e.getAddress(),e.getSalary());
+                System.out.format("\t%20s%5s%13s%5s%25s%15s%15s\n",e.getFname()+"."+e.getMinit()+"."+e.getLname(),"|",e.getSsn(),"|",e.getAddress(),"|",e.getSalary());
             }
         }
-        System.out.format("%25s,%18s,%20s,%15s\n","----------------------------","--------------------","---------------------------","--------------------\n");
+         System.out.println("\t______________________________________________________________________________________________________________");
     }
 }
