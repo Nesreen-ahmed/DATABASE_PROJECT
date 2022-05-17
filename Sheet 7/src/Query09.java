@@ -17,12 +17,12 @@ public class Query09 {
         List<Dependent> Dep = em.createNamedQuery("Dependent.findAll").getResultList();
 
         System.out.println("\n9.List the name of each employee and his/her spouse.\n");
-        System.out.println("\t____________________________________________");
-        System.out.format("\t%18s%5s%15s\n","Employee Name ","|","Spouse Name");
-        System.out.println("\t______________________|_____________________");
+        System.out.println("\t______________________________________________________");
+        System.out.format("\t%18s%11s%15s\n","Employee Name ","|","Spouse Name");
+        System.out.println("\t____________________________|_________________________");
         for (Employee e : Emps) 
         {
-            System.out.format("\t%14s%9s",e.getFname() + "." + e.getMinit() + "." + e.getLname(),"|");
+            System.out.format("\t%20s%9s",e.getFname() + "." + e.getMinit() + "." + e.getLname(),"|");
 
             Collection<Dependent> depen = e.getDependentCollection();
             if (depen.size() == 0) {
@@ -35,7 +35,7 @@ public class Query09 {
                 }
             }
         }
-        System.out.println("\t______________________|_____________________");
+        System.out.println("\t____________________________|_________________________");
     }
     
 }
