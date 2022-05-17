@@ -6,6 +6,7 @@ import Tables.Project;
 import Tables.WorksOn;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 
@@ -28,34 +29,28 @@ public class Etaf1 {
         EntityManager em=Persistence.createEntityManagerFactory("FullProPU").createEntityManager();
         em.getTransaction().begin();
         
-        Department dp = (Department) em.createNamedQuery("Department.findByDname").setParameter("dname","Research").getSingleResult();
-        List<Employee> allEmp= em.createNamedQuery("Employee.findAll").getResultList();
-        
-        double sum=0;
-        int count =0;
-        double avg;
-        
-        System.out.println("\n12.Retrieve the details of each employee who takes salary greater than the average salaries of the research department's employees.\n");
-        System.out.println("\t_______________________________________________________________________________________________________________");
-        System.out.format("\t%20s%5s%10s%8s%20s%20s%15s\n","NameOfEmpolyee","|","Ssn","|","Adress","|","Salary");
-        System.out.println("\t________________________|_________________|_______________________________________|____________________________");
-        for(Employee e : allEmp)
+        List<Employee> Emps = em.createNamedQuery("Employee.findAll").getResultList();
+        List<Dependent> Dep = em.createNamedQuery("Dependent.findAll").getResultList();
+
+        System.out.println("\n9.List the name of each employee and his/her spouse.\n");
+        System.out.println("\t____________________________________________");
+        System.out.format("\t%18s%5s%15s\n","Employee Name ","|","Spouse Name");
+        System.out.println("\t______________________|_____________________");
+        for (Employee e : Emps) 
         {
-            
-            if(e.getDno().getDno().equals(dp.getDno()))
-            {
-                count++;
-                sum+=e.getSalary().doubleValue();
+            System.out.format("\t%14s%9s",e.getFname() + "." + e.getMinit() + "." + e.getLname(),"|");
+
+            Set<Dependent> depen = e.getDependentSet();
+            if (depen.size() == 0) {
+                System.out.format("%15s\n","No spouse");
+            } else {
+                for (Dependent dp : depen) {
+                    if (dp.getRelationship().equalsIgnoreCase("spouse")) {
+                        System.out.format("%15s\n",dp.getDependentPK().getDependentname());
+                    }
+                }
             }
         }
-        avg =  sum/count;
-        for(Employee e : allEmp)
-        {
-            if(e.getSalary().doubleValue()>avg)
-            {
-                System.out.format("\t%20s%5s%13s%5s%25s%15s%15s\n",e.getFname()+"."+e.getMinit()+"."+e.getLname(),"|",e.getSsn(),"|",e.getAddress(),"|",e.getSalary());
-            }
-        }
-         System.out.println("\t______________________________________________________________________________________________________________");
+        System.out.println("\t______________________|_____________________");
     }
 }
