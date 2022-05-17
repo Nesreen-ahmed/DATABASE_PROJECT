@@ -4,15 +4,11 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 
-/**
- *
- * @author Dell
- */
 public class Query01
 {
     public static void main(String[] args) 
     {
-        EntityManager em=Persistence.createEntityManagerFactory("FullProPU").createEntityManager();
+        EntityManager em=Persistence.createEntityManagerFactory("Sheet_7PU").createEntityManager();
         em.getTransaction().begin();
         
         System.out.println("\n1.Retrieve names of employees who live in Houston.\n\n\t___________________________");
